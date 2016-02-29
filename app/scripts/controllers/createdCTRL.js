@@ -31,4 +31,9 @@ routerApp
           alert("Some Error occured");
       })
     };
+
+    $scope.searchFilter = function (x) {
+        var re = new RegExp($scope.nameFilter, 'i');
+        return !$scope.nameFilter || re.test(x.id) ;
+      };
   });

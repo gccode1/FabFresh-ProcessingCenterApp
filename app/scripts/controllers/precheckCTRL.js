@@ -1,6 +1,6 @@
 'use strict';
 routerApp
-  .controller('precheckCTRL', function($scope,ergastAPIservice,$location,$window) {
+  .controller('precheckCTRL', function($state,$rootScope,$scope,ergastAPIservice,$location,$window) {
       $scope.ordersList = [];
 	    ergastAPIservice.getOrderByStatus(4)
 	     .then(
@@ -30,4 +30,13 @@ routerApp
 	          alert("Some Error occured");
 	      })
 	    };
+
+	    $scope.goToOrders= function(id) {
+	      $rootScope.orderid=id;
+	      $state.go('orders');
+	    };
+	    $scope.searchFilter = function (x) {
+	        var re = new RegExp($scope.nameFilter, 'i');
+	        return !$scope.nameFilter || re.test(x.id) ;
+	      };
   });

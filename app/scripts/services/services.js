@@ -236,18 +236,8 @@ angular.module('F1FeederApp.services', []).
                         return deferred.promise;
                 });
     };
-    ergastAPI.setCloths = function(color,type,size,brand,id,gender,damage){
+    ergastAPI.setCloths = function(data){
       var deferredCloths = $q.defer();
-      var data = {
-        "color": color,
-        "gender": gender,
-        "type": type,
-        "brand": brand,
-        "order": id,
-        "size": size,
-        "damage": damage
-
-      };
       return $http({
         data : data,
         method : 'POST',
