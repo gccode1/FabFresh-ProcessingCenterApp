@@ -1,0 +1,34 @@
+<div class="box">
+  <div class="container-1">
+      <span class="icon"><i class="fa fa-search"></i></span>
+      <input type="search" id="search" ng-model="nameFilter" placeholder="Enter OrderId"/>
+  </div>
+</div>
+
+<table style="width:100%" st-table="ordersList" class="table table-striped" st-safe-src="rowCollection">
+<thead>
+  <tr>
+        <th st-sort="id">Order Id</th>
+        <th st-sort="pid">Process ID</th>
+        <th st-sort="owner">Name</th>
+      <th st-sort="quantity">Quantity</th>
+      <th st-sort="modified_at_time">ModifiedDate</th>
+      <th st-sort="modified_at_time">ModifiedTime</th>
+      <th>Wash Complete</th>
+  </tr>
+</thead>
+<tbody>
+  <tr ng-repeat="orders in ordersList | orderBy:'id'|  filter: searchFilter ">
+    <td>{{orders.id}}</td>
+    <td>{{orders.p_id}}</td>
+    <td>{{orders.owner}}</td>
+    <td>{{orders.quantity}}</td>
+    <td>{{orders.modified_at_time | date:'d MMMM yyyy '  }}</td>
+    <td>{{orders.modified_at_time | date :'h:mm:ss'  }}</td>
+      <td>
+       <a href ng-click="updateOrderStatus(orders.id)"> 
+          <p>Next</p>
+	  </a></td>
+  </tr>
+</tbody>
+</table>

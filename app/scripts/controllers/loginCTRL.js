@@ -2,7 +2,7 @@
 
 
 routerApp
-  .controller('loginCTRL', function($rootScope,$scope, $http, $state,service,$cookies) {
+  .controller('loginCTRL', function($rootScope,$scope, $http, $state,ergastAPIservice,$cookies) {
   
   document.body.addEventListener('click', boxCloser, true);
   //$state.go($state.current, {}, {reload: true});
@@ -20,7 +20,7 @@ routerApp
           "username": $scope.login.email,
           "password": $scope.login.password
         };
-        service.login1($scope.user)                 //call to service
+        ergastAPIservice.login($scope.user)                 //call to service
         .then(function(data){
           $scope.$emit('UNLOAD');
           if(data.status=="Not Authenticated"){

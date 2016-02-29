@@ -1,0 +1,41 @@
+<div class="box">
+  <div class="container-1">
+      <span class="icon"><i class="fa fa-search"></i></span>
+      <input type="search" id="search" ng-model="nameFilter" placeholder="Enter OrderId"/>
+  </div>
+</div>
+<table style="width:100%" st-table="ordersList" class="table table-striped">
+<thead>
+  <tr>
+        <th>OrderId</th>
+        <th>Process Id</th>
+
+        <th>Name</th>
+        <th>amount</th>
+      <th>Weight</th>
+      <th>Quantity</th>
+	<th>Order type</th>
+      <th>Order Complete</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr ng-repeat="orders in ordersList | orderBy:'id'|  filter: searchFilter ">
+
+    <td id="order_id">{{orders.id}}</td>
+    <td id ="process_id">{{orders.p_id}}</td>
+    <td>{{orders.owner}}</td>
+    <td>{{orders.amount}}</td>
+      <td id="weight">{{orders.weight}}</td>
+      <td id="quantity">{{orders.quantity}}</td>
+      <td id="order_type">{{orders.order_type}}</td>
+	<td>
+        <a href="http://52.27.27.85/#/invoice/{{orders.id}}"> 
+       <!-- <a href="http://localhost:9000/#/invoice/{{orders.id}}" > -->
+       <!-- <a href="javascript:window.location=createDynamicURL();" class="cssbuttongo"> -->
+        <p>Reciept</p>
+	  </a>
+      </td>
+  </tr>
+</tbody>
+</table>

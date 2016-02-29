@@ -2,7 +2,7 @@
 
 
 routerApp
-  .controller('homeCTRL', function($window,service,$rootScope,$scope,$state,$cookies) {
+  .controller('homeCTRL', function($window,ergastAPIservice,$rootScope,$scope,$state,$cookies) {
   //   if(angular.isDefined($cookies.get('otp_flag')) && $window.location.hash==''){
   //     service.getAddress()
   //       .then(function(response){
