@@ -1,13 +1,6 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Invoice</title>
-		<link rel="stylesheet" href="styles/invoice.css">
-		<link rel="license" href="http://www.opensource.org/licenses/mit-license/">
-		
-	</head>
-	<body>
+<link rel="stylesheet" href="styles/invoice.css">
+<link rel="license" href="http://www.opensource.org/licenses/mit-license/">
+<div>
 		<header>
 			<h1>Invoice</h1>
 			<address contenteditable>
@@ -18,7 +11,7 @@
 			</address>
 			<span><img alt="" src="images/rsz_logo_large.png"><input type="file" accept="image/*"></span>
 		</header>
-<div ng-repeat="order in ordersList" ng-show = "$first" >
+	<div  >
 
 		<article>
 			<h1>Recipient</h1>
@@ -28,7 +21,7 @@
 			<table class="meta">
 				<tr>
 					<th><span contenteditable>Invoice #</span></th>
-					<td><span contenteditable>{{order.invoiceid}}</span></td>
+					<td><span contenteditable>{{order.id}}</span></td>
 				</tr>
 				<tr>
 					<th><span contenteditable>Date</span></th>
@@ -39,31 +32,30 @@
 					<td><span id="prefix" contenteditable>$</span><span>600.00</span></td>
 				</tr> -->
 		</table>
-    <table style="width:100%" st-table="ordersList" class="table table-striped" >
-    <thead>
-        <tr>
+	    <table style="width:100%"  class="table table-striped" >
+		    <thead>
+		        <tr>
 
-        <th st-sort="typeName" > Item</th>
-        <th st-sort="typeQuantity">Quantity</th>
-        <th st-sort="typePrice">Rate</th>
-        <th st-sort="total">Price</th>
+		        <th> Weight</th>
+		        <th >Quantity</th>
+		        <th>Price/Kg</th>
+		        <th>Amount</th>
 
-       	
-      </tr> 
-    </thead>
-<tbody>
-  <tr ng-repeat="orders in ordersList ">
-    <td>{{orders.typeName}}</td>
-    <td>{{orders.typeQuantity}}</td>
-    <td>&#8377; {{orders.typePrice}}</td>
-    <td>{{orders.total}}</td>
-    
-    
-  </tr>
-</tbody>
+		       	
+		      </tr> 
+		    </thead>
+			<tbody>
+			  <tr >
+			    <td>{{order.weight}}</td>
+			    <td>{{order.quantity}}</td>
+			    <td>89</td>
+			    <td>&#8377; {{order.amount}}</td>
+			    
+			    
+			  </tr>
+			</tbody>
 
-</table >
-			<a class="add">+</a>
+		</table >
 			<table class="balance" >
 				
 
@@ -72,7 +64,7 @@
 					<td><span data-prefix>&#8377;</span><span>{{order.amount}}</span></td>
 				</tr>
 				<tr >
-					<th><span contenteditable>Discounted Amount</span></th>
+					<th><span contenteditable>Discount</span></th>
 					<td><span data-prefix>&#8377;</span><span contenteditable>{{order.amount - order.afterDiscount}}</span></td>
 				</tr>
 				<tr >
@@ -89,7 +81,6 @@
 				<p></p>
 			</div>
 		</aside>
-	</table>
+	</div>
 </div>
-	</body>
-</html>
+

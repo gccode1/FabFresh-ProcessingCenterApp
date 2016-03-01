@@ -1,6 +1,11 @@
 'use strict';
 routerApp
-  .controller('receivedCTRL', function($state,$scope,ergastAPIservice,$location,$window) {
+  .controller('receivedCTRL', function($cookies,$state,$scope,ergastAPIservice,$location,$window) {
+     if(angular.isUndefined($cookies.get('token'))){
+        $state.go('login');
+        alert("Please login to continue");
+        return;
+      }
      $scope.ordersList = [];
 	    ergastAPIservice.getOrderByStatus(3)
 	     .then(

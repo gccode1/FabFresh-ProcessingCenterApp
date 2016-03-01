@@ -13,7 +13,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider ) {
     $stateProvider
         
         .state('login', {
-            url: '/login',
+            url: '/#',
             templateUrl: '../views/login.html',
             controller: 'loginCTRL',
         })
@@ -62,10 +62,10 @@ routerApp.config(function($stateProvider, $urlRouterProvider ) {
             templateUrl: '../views/iron.html',
             controller: 'ironCTRL'
         })
-        .state('ship', {
-            url: '/ship',
-            templateUrl: '../views/ship.html',
-            controller: 'shipCTRL',
+        .state('package', {
+            url: '/package',
+            templateUrl: '../views/package.html',
+            controller: 'packageCTRL',
         })
         .state('slip', {
             url: '/slip',
@@ -76,7 +76,10 @@ routerApp.config(function($stateProvider, $urlRouterProvider ) {
         .state('invoice', {
             url: '/invoice',
             templateUrl: '../views/invoice.html',
-            controller: 'invoiceCTRL'
+            controller: 'invoiceCTRL',
+            data: {
+                css: ['styles/invoice.css']
+            }
         })
         
         .state('receipt', {
@@ -95,7 +98,6 @@ routerApp.config(function($stateProvider, $urlRouterProvider ) {
             //templateUrl: '../views/logout.html',
             controller: 'logoutCTRL',
         })
-        
 });
 /*
 routerApp.factory('UserService', function() {

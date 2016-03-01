@@ -1,14 +1,14 @@
 'use strict';
 angular.module('F1FeederApp.services', []).
-  factory('ergastAPIservice', function($http, $q) {
-    $http.defaults.headers.common.Authorization = 'Bearer hari';
+  factory('ergastAPIservice', function($http, $q,$cookies) {
+    $http.defaults.headers.common.Authorization = 'Bearer '+ $cookies.get('token');
     $http.defaults.headers.post["Content-Type"] = "application/json";
     $http.defaults.headers.patch["Content-Type"] = "application/json";
     var ergastAPI = {};
 
 	var deferred = $q.defer();
 
-	var URL = 'http://fabfresh-dev.elasticbeanstalk.com'
+	var URL = 'http://fabfresh.elasticbeanstalk.com';
  // var URL = 'http://localhost:8000'
   //var URL = 'http://fabfresh-dev.elasticbeanstalk.com'
   
@@ -46,6 +46,7 @@ angular.module('F1FeederApp.services', []).
                 		return deferred.promise;			
 			});
 	};
+
   
 
   // ergastAPI.getOrderByStatus = function(status) {
@@ -77,8 +78,39 @@ angular.module('F1FeederApp.services', []).
       deferotp.reject(error);
     })
 
-   return deferotp.promise
+   return deferotp.promise;
   };
+
+  // ergastAPI.getOrderDetails = function(id){
+  //     return $http({
+  // method : 'GET',
+  //       url : URL + '/orders/'+ id + '.json'
+  //     })
+  //     .then(function(response){
+  //           deferred.resolve(response.data);
+  //               return deferred.promise;
+  //               },function(response){
+  //                   deferred.reject(response);
+  //                       return deferred.promise;
+  //               });
+  //   };
+
+     ergastAPI.getOrderDetails = function(id){
+      var deferotp = $q.defer();
+        $http({
+            url : URL + '/orders/'+ id + '.json',
+            method : 'GET'
+        })
+        .success(function(response){
+            //console.log(response);
+            deferotp.resolve(response);
+        })
+        .error(function(error){
+          deferotp.reject(error);
+        })
+
+       return deferotp.promise;
+    };
 
 
 
@@ -223,19 +255,7 @@ angular.module('F1FeederApp.services', []).
                 });
     };
 
-	ergastAPI.getOrderDetails = function(id){
-      return $http({
-	method : 'GET',
-        url : URL + '/orders/'+ id + '.json'
-      })
-      .then(function(response){
-            deferred.resolve(response.data);
-                return deferred.promise;
-                },function(response){
-                    deferred.reject(response);
-                        return deferred.promise;
-                });
-    };
+	
     ergastAPI.setCloths = function(data){
       var deferredCloths = $q.defer();
       return $http({
@@ -273,122 +293,7 @@ angular.module('F1FeederApp.services', []).
     };
 
     
-    //Created Stage 1[created] to 3[recieved]
-    ergastAPI.setStatusCreated = function(id){
-      var data = {
-        "status" : 3
-      };
-      return $http({
-        data : data,
-        method : 'PATCH',
-        url : URL + '/orders/'+id+'.json'
-      });
-
-    };
-
-    //Received complete stage 3[recieved] to 4[tagging]
-    ergastAPI.setStatusRecieved = function(id){
-      var data = {
-        "status" : 4
-      };
-      return $http({
-        data : data,
-        method : 'PATCH',
-        url : URL + '/orders/'+id+'.json'
-      });
-    };    
-
-    
-    //Tagging complete stage 4[precheck] to 5[Tagging]
-    ergastAPI.setStatusPrecheck = function(id){
-      var data = {
-        "status" : 5
-     };
-      return $http({
-        data : data,
-        method : 'PATCH',
-        url : URL + '/orders/'+id+'.json'
-      });
-    };
-
-    
-    //Pre check stage 5[tagging] to 6[wash] 
-    ergastAPI.setStatusTagging = function(id){
-      var data = {
-        "status" : 6
-      };
-      return $http({
-        data : data,
-        method : 'PATCH',
-        url : URL + '/orders/'+id+'.json'
-      });
-
-    };
-
-    //Wash stage 6[wash] to 7[dry]
-    ergastAPI.setStatusWash = function(id){
-      var data = {
-        "status" : 7
-      };
-      return $http({
-        data : data,
-        method : 'PATCH',
-        url : URL + '/orders/'+id+'.json'
-      });
-
-    };
-
-    //Dry stage 7[dry] to 8[iron]
-    ergastAPI.setStatusDry = function(id){
-      var data = {
-        "status" : 8
-      };
-      return $http({
-        data : data,
-        method : 'PATCH',
-        url : URL + '/orders/'+id+'.json'
-      });
-
-    };
-
-    //iron stage 8[iron] to 9[package]
-    ergastAPI.setStatusIron = function(id){
-      //deferred = $q.defer();
-      var data = {
-        "status" : 9
-     };
-      return $http({
-        data : data,
-        method : 'PATCH',
-        url : URL + '/orders/' +id+ '.json'
-      })
-      .then(function(response){
-            deferred.resolve(response.data);
-                return deferred.promise;
-                },function(response){
-                    deferred.reject(response);
-                        return deferred.promise;
-                });
-    };
-    
-
-    ergastAPI.setStatusShip = function(id){
-      var data = {
-        "status" : 10
-     };
-      return $http({
-        data : data,
-        method : 'PATCH',
-        url : URL + '/orders/' +id+ '.json'
-      })
-      .then(function(response){
-            deferred.resolve(response.data);
-                return deferred.promise;
-                },function(response){
-                    deferred.reject(response);
-                        return deferred.promise;
-                });
-    };
+  
 
     return ergastAPI;
   });

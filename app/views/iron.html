@@ -9,7 +9,6 @@
 <thead>
   <tr>
         <th st-sort="id">Order Id</th>
-        <th st-sort="pid">Process ID</th>
         <th st-sort="owner">Name</th>
       <th st-sort="quantity">Quantity</th>
       <th st-sort="modified_at_time">ModifiedDate</th>
@@ -21,7 +20,6 @@
 <tbody>
   <tr ng-repeat="orders in ordersList | orderBy:'id'|  filter: searchFilter ">
     <td>{{orders.id}}</td>
-    <td>{{orders.p_id}}</td>
     <td>{{orders.owner}}</td>
     <td>{{orders.quantity}}</td>
     <td>{{orders.modified_at_time | date:'d MMMM yyyy '  }}</td>

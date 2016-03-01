@@ -9,7 +9,6 @@
 <thead>
   <tr>
         <th st-sort="id">Order Id</th>
-        <th st-sort="pid">Process ID</th>
         <th st-sort="owner">Name</th>
       <th st-sort="amount">Amount</th>
       <th st-sort="weight">Weight</th>
@@ -28,7 +27,6 @@
   <tr ng-repeat="orders in ordersList | orderBy:'id'|  filter: searchFilter ">
 
     <td id="order_id">{{orders.id}}</td>
-    <td id ="process_id">{{orders.p_id}}</td>
     <td>{{orders.owner}}</td>
     <td>{{orders.amount}}</td>
       <td id="weight">{{orders.weight}}</td>
@@ -40,7 +38,7 @@
       <td>{{orders.modified_at_time | date :'h:mm:ss'  }}</td>
     
       <td>
-        <a href="#/orderStatusShip/{{orders.id}}" >
+        <a href ng-click="updateOrderStatus(orders.id)"> 
        
        <!-- <a href="http://localhost:9000/#/orderStatusShip/{{orders.id}}" >
        -->

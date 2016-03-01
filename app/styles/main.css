@@ -78,8 +78,6 @@ select {
   background-color: #FFF;
 }
 
-
-/* for floating labls*/
 input:focus, input:active,, textarea {
   outline: none !important;
 }

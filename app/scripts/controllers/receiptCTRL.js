@@ -1,11 +1,27 @@
 'use strict';
 routerApp
-  .controller('receiptCTRL', function($scope,ergastAPIservice,$location,$window) {
+  .controller('receiptCTRL', function($cookies,$state, $rootScope,$scope,ergastAPIservice,$location,$window) {
+    if(angular.isUndefined($cookies.get('token'))){
+        $state.go('login');
+        alert("Please login to continue");
+        return;
+      }
     $scope.ordersList = [];
 	    ergastAPIservice.getOrderByStatus(10)
 	     .then(
 			function(response){
-				 $scope.ordersList = response;
+				 for(var i=0;i<response.length;i++)
+				 	$scope.ordersList.push(response[i]);
+			},
+			function(httpError){
+				throw httpError.status;
+			}
+		);
+	    ergastAPIservice.getOrderByStatus(11)
+	     .then(
+			function(response){
+				for(var i=0;i<response.length;i++)
+				 	$scope.ordersList.push(response[i]);
 			},
 			function(httpError){
 				throw httpError.status;
@@ -13,23 +29,10 @@ routerApp
 		);
 
 
-	     $scope.updateOrderStatus = function(id) {
-	      ergastAPIservice.updateOrderStatus(id,10)
-	      .then(function(reponse){
-	        alert('Order is updated to shipped');
-	        ergastAPIservice.getOrderByStatus(9)
-		     .then(
-				function(response){
-					 $scope.ordersList = response;
-				},
-				function(httpError){
-					throw httpError.status;
-				}
-			);
-	        
-	      },function(error){
-	          alert("Some Error occured");
-	      })
+
+	    $scope.goToInvoice = function(x) {
+	      	$rootScope.orderid=x;
+	      	$state.go("invoice");
 	    };
 	    $scope.searchFilter = function (x) {
 	        var re = new RegExp($scope.nameFilter, 'i');

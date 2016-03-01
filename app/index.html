@@ -14,6 +14,8 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <!-- <link rel="stylesheet" href="styles/invoice.css"> -->
+
     <!-- endbuild -->
   </head>
   <body ng-app= "routerApp" ng-controller="homeCTRL">
@@ -25,7 +27,8 @@
 
     <div class="header">
       <div class="navbar navbar-default" role="navigation">
-        <center><a  ui-sref="login" id="login_btn" class="btn-default" style="float:right; margin-right:30px; margin-top:20px;">Login</a></center>
+        <center ng-hide="check_session()" ><a   ui-sref="login" id="login_btn" class="btn-default" style="float:right; margin-right:30px; margin-top:20px;">Login</a></center>
+        <center ng-show="check_session()"><a  ui-sref="logout" id="logout_btn" class="btn-default" style="float:right; margin-right:30px; margin-top:20px;">Logout</a></center>
         <div class="container">
           <div class="navbar-header">
 
@@ -50,8 +53,8 @@
               <li><a ui-sref="wash">Wash</a></li>
               <li><a ui-sref="dry">Dry</a></li>
               <li><a ui-sref="iron">Iron</a></li>
-              <li><a ui-sref="ship">Packaging</a></li>
-              <li><a ui-sref="slip">Reciept</a></li>
+              <li><a ui-sref="package">Packaging</a></li>
+              <li><a ui-sref="receipt">Reciept</a></li>
             </ul>
           </div>
         </div>
@@ -62,12 +65,12 @@
     <div ui-view></div>
     </div>
 
- <!--    <div class="footer">
+    <div class="footer">
       <div class="container">
         <p>With <span class="glyphicon glyphicon-heart"></span> FabFresh</p>
       </div>
     </div>
- -->
+
 
     <!-- Add your site or application content here -->
     
@@ -97,8 +100,10 @@
         <script src="scripts/controllers/washCTRL.js"></script>
         <script src="scripts/controllers/dryCTRL.js"></script>
         <script src="scripts/controllers/ironCTRL.js"></script>
-        <script src="scripts/controllers/shipCTRL.js"></script>
-        <script src="scripts/controllers/slipCTRL.js"></script>
+        <script src="scripts/controllers/packageCTRL.js"></script>
+        <script src="scripts/controllers/receiptCTRL.js"></script>
+        <script src="scripts/controllers/invoiceCTRL.js"></script>
+        <script src="scripts/controllers/logoutCTRL.js"></script>
         <script src="scripts/controllers/ordersCTRL.js"></script>
         <!-- endbuild -->
 </body>

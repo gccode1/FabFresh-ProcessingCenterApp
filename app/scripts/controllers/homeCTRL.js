@@ -3,25 +3,17 @@
 
 routerApp
   .controller('homeCTRL', function($window,ergastAPIservice,$rootScope,$scope,$state,$cookies) {
-  //   if(angular.isDefined($cookies.get('otp_flag')) && $window.location.hash==''){
-  //     service.getAddress()
-  //       .then(function(response){
-  //         if(response.length>0)
-  //           $localStorage.homeState='place_order';
-  //         else
-  //           $localStorage.homeState='address';
-  //         $state.go($localStorage.homeState);
-  //       },function(error){
-  //         alert("some error occured");
-  //       })
-  //   }
-
-  //   $scope.otp_flag=function(){
-  //     if(angular.isDefined($cookies.get('otp_flag')))
-  //       return true;
-  //     else
-  //       return false;
-  //   }
+    
+    $scope.check_session=function(){
+      if(angular.isDefined($cookies.get('token'))){
+        //console.log("true");
+        return true;
+      }
+      else{
+         //console.log("false");
+        return false;
+      }
+    }
 
   //   $scope.getUsername=function(){
   //     if(angular.isDefined($cookies.get('otp_flag')))

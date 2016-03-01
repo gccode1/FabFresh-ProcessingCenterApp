@@ -26,9 +26,9 @@ routerApp
           if(data.status=="Not Authenticated"){
               alert("Either email or password is wrong");
             } else {
-              alert("Now you are logged in");
-            $cookies.put('token',data.access_token); 
-            
+              //alert("Now you are logged in");
+              $cookies.put('token',data.access_token); 
+              $state.go('main');
           }    
 
         },function(error){
