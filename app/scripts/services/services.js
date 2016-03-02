@@ -122,8 +122,7 @@ angular.module('F1FeederApp.services', []).
     $http({
       method  : 'PATCH',
       url     : URL+'/orders/'+id+'/',
-      data    : order,
-      headers : {'Authorization': 'Bearer hari', 'Content-Type': 'application/json'} 
+      data    : order
      })
     .success(function(response){
         deferotp.resolve(response);

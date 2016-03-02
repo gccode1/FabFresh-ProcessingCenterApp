@@ -18,7 +18,7 @@ routerApp
       ergastAPIservice.getOrderDetails($scope.id)
         .then(
         function(response){
-          if(!response.afterDiscount)
+          if(response.afterDiscount==null)
             response.afterDiscount=response.amount;
            $scope.order = response;
           },
