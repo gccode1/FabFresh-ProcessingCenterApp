@@ -12,8 +12,10 @@ routerApp
 	     .then(
 			function(response){
 				 $scope.ordersList = response;
+				console.log(response);
 			},
 			function(httpError){
+				console.log("Error");
 				throw httpError.status;
 			}
 		);
